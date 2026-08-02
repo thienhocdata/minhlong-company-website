@@ -101,7 +101,7 @@ export default function Home() {
           <a href="#dich-vu">Dịch vụ</a>
           <a href="#loi-the">Lợi thế</a>
           <a href="#quy-trinh">Quy trình</a>
-          <a href="#legal-agent">Legal Agent</a>
+          <a href="/tro-ly-phap-ly">Legal Agent</a>
         </nav>
 
         <a className="header-cta" href="#lien-he">
@@ -114,7 +114,7 @@ export default function Home() {
             <a href="#dich-vu">Dịch vụ</a>
             <a href="#loi-the">Lợi thế</a>
             <a href="#quy-trinh">Quy trình</a>
-            <a href="#legal-agent">Legal Agent</a>
+            <a href="/tro-ly-phap-ly">Legal Agent</a>
             <a href="#lien-he">Liên hệ</a>
           </div>
         </details>
@@ -143,7 +143,7 @@ export default function Home() {
               <a className="button button-primary" href="#dich-vu">
                 Khám phá dịch vụ <span aria-hidden="true">→</span>
               </a>
-              <a className="text-link" href="#legal-agent">
+              <a className="text-link" href="/tro-ly-phap-ly">
                 Gặp trợ lý pháp lý <span aria-hidden="true">↗</span>
               </a>
             </div>
@@ -330,8 +330,8 @@ export default function Home() {
               <span>Nguồn có kiểm soát</span>
               <span>Chuyển tiếp có đồng ý</span>
             </div>
-            <a className="button button-light" href="#lien-he">
-              Đăng ký trải nghiệm <span aria-hidden="true">→</span>
+            <a className="button button-light" href="/tro-ly-phap-ly">
+              Bắt đầu trò chuyện <span aria-hidden="true">→</span>
             </a>
           </div>
 

@@ -1735,3 +1735,525 @@ footer {
   outline: 2px solid var(--copper);
   outline-offset: 4px;
 }
+
+/* Minh Long Legal Agent — chat-first product surface */
+.agent-app-shell {
+  height: 100dvh;
+  min-height: 640px;
+  display: grid;
+  grid-template-rows: 76px minmax(0, 1fr);
+  color: var(--ink);
+  background:
+    radial-gradient(circle at 50% -10%, rgba(200, 121, 69, 0.09), transparent 32%),
+    #f4f1e9;
+}
+
+.agent-app-header {
+  z-index: 10;
+  padding: 0 clamp(18px, 4vw, 56px);
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  border-bottom: 1px solid rgba(18, 60, 50, 0.13);
+  background: rgba(247, 244, 237, 0.92);
+  backdrop-filter: blur(18px);
+}
+
+.agent-app-brand {
+  width: fit-content;
+  display: flex;
+  align-items: center;
+  gap: 11px;
+}
+
+.agent-app-mark,
+.agent-welcome-mark,
+.agent-message-avatar {
+  display: grid;
+  place-items: center;
+  color: white;
+  background: var(--green);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+}
+
+.agent-app-mark {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  font-size: 11px;
+}
+
+.agent-app-brand > span:last-child {
+  display: flex;
+  flex-direction: column;
+}
+
+.agent-app-brand strong {
+  font-size: 11px;
+  letter-spacing: 0.14em;
+}
+
+.agent-app-brand small {
+  margin-top: 2px;
+  color: var(--muted);
+  font-size: 9px;
+}
+
+.agent-app-context {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--muted);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.agent-online-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #3c9872;
+  box-shadow: 0 0 0 4px rgba(60, 152, 114, 0.12);
+}
+
+.agent-home-link {
+  justify-self: end;
+  padding-bottom: 4px;
+  border-bottom: 1px solid var(--copper);
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+}
+
+.agent-workspace {
+  min-height: 0;
+  display: grid;
+  grid-template-rows: minmax(0, 1fr) auto;
+}
+
+.agent-conversation {
+  min-height: 0;
+  overflow-y: auto;
+  scroll-behavior: smooth;
+}
+
+.agent-restoring {
+  min-height: 100%;
+  display: grid;
+  place-items: center;
+  color: var(--muted);
+  font-size: 11px;
+  letter-spacing: 0.04em;
+}
+
+.agent-welcome {
+  min-height: 100%;
+  padding: 70px 24px 42px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+}
+
+.agent-welcome-mark {
+  width: 58px;
+  height: 58px;
+  margin-bottom: 24px;
+  border-radius: 16px;
+  box-shadow: 0 14px 32px rgba(18, 60, 50, 0.18);
+  font-size: 14px;
+}
+
+.agent-welcome > p:first-of-type {
+  margin: 0 0 17px;
+  color: var(--copper);
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+}
+
+.agent-welcome h1 {
+  margin: 0;
+  font-family: var(--display);
+  font-size: clamp(48px, 7vw, 86px);
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: -0.04em;
+}
+
+.agent-welcome-line {
+  width: 42px;
+  height: 1px;
+  margin: 29px 0 24px;
+  background: var(--copper);
+}
+
+.agent-welcome-copy {
+  max-width: 580px;
+  margin: 0;
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.75;
+}
+
+.agent-message-list {
+  width: min(860px, calc(100% - 40px));
+  margin: 0 auto;
+  padding: 56px 0 44px;
+}
+
+.agent-message {
+  margin-bottom: 30px;
+  display: flex;
+  align-items: flex-start;
+  gap: 13px;
+}
+
+.agent-message.user {
+  justify-content: flex-end;
+}
+
+.agent-message-avatar {
+  flex: 0 0 auto;
+  width: 34px;
+  height: 34px;
+  border-radius: 9px;
+  font-size: 9px;
+}
+
+.agent-message-bubble {
+  max-width: min(700px, 84%);
+  padding: 17px 19px;
+  border: 1px solid rgba(18, 60, 50, 0.13);
+  border-radius: 4px 17px 17px;
+  background: rgba(255, 255, 255, 0.78);
+  box-shadow: 0 9px 25px rgba(18, 60, 50, 0.045);
+}
+
+.agent-message.user .agent-message-bubble {
+  color: white;
+  border: 0;
+  border-radius: 17px 17px 4px 17px;
+  background: var(--green);
+  box-shadow: 0 12px 28px rgba(18, 60, 50, 0.13);
+}
+
+.agent-message-bubble > p {
+  margin: 0;
+  white-space: pre-wrap;
+  font-size: 14px;
+  line-height: 1.75;
+}
+
+.agent-sources {
+  margin-top: 17px;
+  padding-top: 14px;
+  border-top: 1px solid rgba(18, 60, 50, 0.11);
+}
+
+.agent-sources summary {
+  cursor: pointer;
+  color: var(--green);
+  list-style: none;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+}
+
+.agent-sources summary::-webkit-details-marker {
+  display: none;
+}
+
+.agent-sources summary::before {
+  content: "+";
+  margin-right: 7px;
+  color: var(--copper);
+}
+
+.agent-sources[open] summary::before {
+  content: "−";
+}
+
+.agent-source-list {
+  padding-top: 12px;
+}
+
+.agent-source-list article {
+  padding: 11px 0;
+  display: grid;
+  grid-template-columns: 28px 1fr;
+  gap: 9px;
+  border-top: 1px solid rgba(18, 60, 50, 0.08);
+}
+
+.agent-source-list article > span {
+  color: var(--copper);
+  font-family: var(--display);
+  font-size: 11px;
+}
+
+.agent-source-list article > div {
+  display: flex;
+  flex-direction: column;
+}
+
+.agent-source-list a,
+.agent-source-list strong {
+  color: var(--ink);
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.agent-source-list a:hover {
+  text-decoration: underline;
+}
+
+.agent-source-list small {
+  margin-top: 3px;
+  color: var(--muted);
+  font-size: 9px;
+}
+
+.agent-typing {
+  min-width: 64px;
+  padding: 17px 18px;
+  display: flex;
+  gap: 5px;
+  border: 1px solid rgba(18, 60, 50, 0.13);
+  border-radius: 4px 17px 17px;
+  background: rgba(255, 255, 255, 0.78);
+}
+
+.agent-typing i {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--copper);
+  animation: agent-pulse 1s infinite ease-in-out;
+}
+
+.agent-typing i:nth-child(2) {
+  animation-delay: 120ms;
+}
+
+.agent-typing i:nth-child(3) {
+  animation-delay: 240ms;
+}
+
+@keyframes agent-pulse {
+  0%,
+  70%,
+  100% {
+    opacity: 0.28;
+    transform: translateY(0);
+  }
+  35% {
+    opacity: 1;
+    transform: translateY(-3px);
+  }
+}
+
+.agent-composer-zone {
+  z-index: 5;
+  padding: 0 20px 18px;
+  background: linear-gradient(to top, #f4f1e9 72%, rgba(244, 241, 233, 0));
+}
+
+.agent-suggestions {
+  width: min(860px, 100%);
+  margin: 0 auto 10px;
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.agent-suggestions button {
+  padding: 9px 12px;
+  color: var(--green);
+  border: 1px solid rgba(18, 60, 50, 0.16);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.66);
+  cursor: pointer;
+  font: inherit;
+  font-size: 10px;
+  transition: border 160ms ease, background 160ms ease;
+}
+
+.agent-suggestions button:hover {
+  border-color: var(--copper);
+  background: white;
+}
+
+.agent-composer {
+  width: min(860px, 100%);
+  min-height: 66px;
+  margin: 0 auto;
+  padding: 9px 9px 9px 20px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  border: 1px solid rgba(18, 60, 50, 0.2);
+  border-radius: 18px;
+  background: white;
+  box-shadow: 0 16px 45px rgba(18, 60, 50, 0.1);
+}
+
+.agent-composer:focus-within {
+  border-color: var(--copper);
+  box-shadow: 0 18px 48px rgba(18, 60, 50, 0.13);
+}
+
+.agent-composer textarea {
+  flex: 1;
+  max-height: 135px;
+  padding: 12px 0;
+  resize: none;
+  border: 0;
+  outline: 0;
+  background: transparent;
+  color: var(--ink);
+  font: inherit;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.agent-composer textarea::placeholder {
+  color: #8b938f;
+}
+
+.agent-composer > button {
+  flex: 0 0 auto;
+  width: 46px;
+  height: 46px;
+  display: grid;
+  place-items: center;
+  border: 0;
+  border-radius: 13px;
+  color: white;
+  background: var(--green);
+  cursor: pointer;
+  font-size: 19px;
+}
+
+.agent-composer > button:disabled {
+  cursor: not-allowed;
+  opacity: 0.4;
+}
+
+.agent-composer-meta {
+  width: min(860px, 100%);
+  margin: 9px auto 0;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  gap: 14px;
+  color: var(--muted);
+}
+
+.agent-composer-meta button {
+  width: fit-content;
+  padding: 0;
+  border: 0;
+  border-bottom: 1px solid rgba(18, 60, 50, 0.25);
+  background: none;
+  cursor: pointer;
+  color: var(--green);
+  font: inherit;
+  font-size: 9px;
+  font-weight: 800;
+}
+
+.agent-composer-meta span {
+  font-size: 9px;
+  font-weight: 700;
+}
+
+.agent-composer-meta small {
+  justify-self: end;
+  text-align: right;
+  font-size: 8px;
+}
+
+@media (max-width: 720px) {
+  .agent-app-shell {
+    grid-template-rows: 66px minmax(0, 1fr);
+  }
+
+  .agent-app-header {
+    padding: 0 14px;
+    grid-template-columns: 1fr auto;
+  }
+
+  .agent-app-context {
+    display: none;
+  }
+
+  .agent-home-link {
+    font-size: 8px;
+  }
+
+  .agent-welcome {
+    padding: 44px 20px 20px;
+  }
+
+  .agent-welcome h1 {
+    font-size: 48px;
+  }
+
+  .agent-welcome-copy {
+    font-size: 12px;
+  }
+
+  .agent-message-list {
+    width: calc(100% - 24px);
+    padding-top: 30px;
+  }
+
+  .agent-message-bubble {
+    max-width: 88%;
+    padding: 14px 15px;
+  }
+
+  .agent-message-bubble > p {
+    font-size: 13px;
+  }
+
+  .agent-composer-zone {
+    padding: 0 10px 10px;
+  }
+
+  .agent-suggestions {
+    justify-content: flex-start;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+  }
+
+  .agent-suggestions button {
+    flex: 0 0 auto;
+  }
+
+  .agent-composer {
+    min-height: 59px;
+    padding-left: 15px;
+    border-radius: 15px;
+  }
+
+  .agent-composer > button {
+    width: 41px;
+    height: 41px;
+  }
+
+  .agent-composer-meta {
+    grid-template-columns: 1fr auto;
+  }
+
+  .agent-composer-meta small {
+    display: none;
+  }
+}

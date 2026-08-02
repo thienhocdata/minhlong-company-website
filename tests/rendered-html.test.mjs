@@ -53,8 +53,56 @@ test("renders the key navigation and disclosure content", async () => {
 
   assert.match(html, /href="#dich-vu"/);
   assert.match(html, /href="#quy-trinh"/);
-  assert.match(html, /href="#legal-agent"/);
+  assert.match(html, /href="\/tro-ly-phap-ly"/);
   assert.match(html, /href="#lien-he"/);
   assert.match(html, /Legal Agent có thay thế luật sư không\?/);
   assert.match(html, /hotline và email sẽ được bổ sung/i);
+});
+
+test("server-renders the dedicated Legal Agent conversation page", async () => {
+  const workerUrl = new URL("../dist/server/index.js", import.meta.url);
+  workerUrl.searchParams.set("agent", `${process.pid}-${Date.now()}`);
+  const { default: worker } = await import(workerUrl.href);
+  const response = await worker.fetch(
+    new Request("https://minhlong.example/tro-ly-phap-ly", {
+      headers: {
+        accept: "text/html",
+        host: "minhlong.example",
+        "x-forwarded-host": "minhlong.example",
+        "x-forwarded-proto": "https",
+      },
+    }),
+    {
+      ASSETS: { fetch: async () => new Response("Not found", { status: 404 }) },
+    },
+    { waitUntil() {}, passThroughOnException() {} },
+  );
+
+  assert.equal(response.status, 200);
+  const html = await response.text();
+  assert.match(html, /Bạn cần hỗ trợ gì\?/);
+  assert.match(html, /MINH LONG LEGAL AGENT/);
+  assert.match(html, /Hỏi bất kỳ điều gì về tình huống đất đai/);
+  assert.match(html, /Cuộc trò chuyện mới/);
+  assert.doesNotMatch(html, /Đăng ký trải nghiệm/);
+});
+
+test("Legal Agent gateway does not expose history without a signed session", async () => {
+  const workerUrl = new URL("../dist/server/index.js", import.meta.url);
+  workerUrl.searchParams.set("gateway", `${process.pid}-${Date.now()}`);
+  const { default: worker } = await import(workerUrl.href);
+  const response = await worker.fetch(
+    new Request("https://minhlong.example/api/legal-agent", {
+      method: "POST",
+      headers: { "content-type": "application/json" },
+      body: JSON.stringify({ action: "history" }),
+    }),
+    {
+      ASSETS: { fetch: async () => new Response("Not found", { status: 404 }) },
+    },
+    { waitUntil() {}, passThroughOnException() {} },
+  );
+
+  assert.equal(response.status, 200);
+  assert.deepEqual(await response.json(), { messages: [] });
 });
