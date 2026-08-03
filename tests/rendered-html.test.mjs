@@ -53,10 +53,16 @@ test("renders the key navigation and disclosure content", async () => {
 
   assert.match(html, /href="#dich-vu"/);
   assert.match(html, /href="#quy-trinh"/);
-  assert.match(html, /href="\/tro-ly-phap-ly"/);
+  assert.match(html, /aria-label="Minh Long Legal Agent"/);
+  assert.doesNotMatch(html, /href="\/tro-ly-phap-ly"/);
   assert.match(html, /href="#lien-he"/);
   assert.match(html, /Legal Agent có thay thế luật sư không\?/);
-  assert.match(html, /hotline và email sẽ được bổ sung/i);
+  assert.match(html, /0938 202 102/);
+  assert.match(html, /0985 532 166/);
+  assert.match(html, /contact\.minhlongcorp@gmail\.com/);
+  assert.match(html, /07:00 – 17:00/);
+  assert.match(html, /https:\/\/www\.facebook\.com\/profile\.php\?id=61592556041235/);
+  assert.match(html, /https:\/\/m\.me\/61592556041235/);
 });
 
 test("server-renders the dedicated Legal Agent conversation page", async () => {

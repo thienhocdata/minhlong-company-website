@@ -41,3 +41,6 @@ next-env.d.ts
 /.wrangler/
 /outputs/
 /work/
+/tmp/
+/dev-lan.*.log
+/public/social/minh-long-facebook-cover.png
