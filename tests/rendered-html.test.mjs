@@ -35,15 +35,17 @@ test("server-renders the complete Minh Long landing page", async () => {
   const html = await response.text();
   assert.match(
     html,
-    /<title>Minh Long \| Bất động sản, đo đạc, thiết kế và xây dựng<\/title>/i,
+    /<title>Minh Long \| Nhà đất cần rõ trước khi làm<\/title>/i,
   );
-  assert.match(html, /Bất động sản, đo đạc, thiết kế và xây dựng\./);
+  assert.match(html, /Nhà đất/);
+  assert.match(html, /cần rõ/);
+  assert.match(html, /trước khi làm\./);
   assert.match(html, /Môi giới bất động sản/);
   assert.match(html, /Tư vấn thiết kế/);
   assert.match(html, /Đo đạc hiện trạng/);
-  assert.match(html, /Minh Long Legal Agent/);
+  assert.match(html, /aria-label="Mở Minh Long Legal Agent"/);
   assert.match(html, /85 Hưng Nhơn/);
-  assert.match(html, /https:\/\/minhlong\.example\/og\.png/);
+  assert.match(html, /https:\/\/minhlong\.example\/og-redesign\.png/);
   assert.doesNotMatch(html, /react-loading-skeleton|Your site is taking shape/i);
 });
 
@@ -56,15 +58,18 @@ test("renders the key navigation and disclosure content", async () => {
   assert.match(html, /aria-label="Minh Long Legal Agent"/);
   assert.doesNotMatch(html, /href="\/tro-ly-phap-ly"/);
   assert.match(html, /href="#lien-he"/);
-  assert.match(html, /Legal Agent có thay thế luật sư không\?/);
+  assert.doesNotMatch(html, /Câu hỏi thường gặp|Thông tin cần biết trước khi liên hệ/);
+  assert.doesNotMatch(html, /Trao đổi sơ bộ về pháp luật đất đai/);
   assert.match(html, /0938 202 102/);
   assert.match(html, /0985 532 166/);
   assert.match(html, /contact\.minhlongcorp@gmail\.com/);
-  assert.match(html, /07:00 – 17:00/);
+  assert.match(html, /07:00–11:00/);
+  assert.match(html, /13:30–17:00/);
   assert.match(html, /https:\/\/www\.facebook\.com\/profile\.php\?id=61592556041235/);
   assert.match(html, /https:\/\/m\.me\/61592556041235/);
   assert.match(html, /aria-label="Nhắn tin với Minh Long qua Messenger"/);
-  assert.match(html, /data-label="Zalo 0985 532 166"/);
+  assert.match(html, /data-label="0985 532 166"/);
+  assert.match(html, />Zalo<\/span>/);
   assert.match(html, /Ảnh minh họa · Kevin Menajang \/ Pexels/);
 });
 
