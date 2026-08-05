@@ -35,9 +35,9 @@ test("server-renders the complete Minh Long landing page", async () => {
   const html = await response.text();
   assert.match(
     html,
-    /<title>Minh Long \| Bất động sản, thiết kế, xây dựng &amp; đo đạc<\/title>/i,
+    /<title>Minh Long \| Bất động sản, đo đạc, thiết kế và xây dựng<\/title>/i,
   );
-  assert.match(html, /Một đầu mối\./);
+  assert.match(html, /Bất động sản, đo đạc, thiết kế và xây dựng\./);
   assert.match(html, /Môi giới bất động sản/);
   assert.match(html, /Tư vấn thiết kế/);
   assert.match(html, /Đo đạc hiện trạng/);
@@ -64,6 +64,8 @@ test("renders the key navigation and disclosure content", async () => {
   assert.match(html, /https:\/\/www\.facebook\.com\/profile\.php\?id=61592556041235/);
   assert.match(html, /https:\/\/m\.me\/61592556041235/);
   assert.match(html, /aria-label="Nhắn tin với Minh Long qua Messenger"/);
+  assert.match(html, /data-label="Zalo 0985 532 166"/);
+  assert.match(html, /Ảnh minh họa · Kevin Menajang \/ Pexels/);
 });
 
 test("server-renders the dedicated Legal Agent conversation page", async () => {

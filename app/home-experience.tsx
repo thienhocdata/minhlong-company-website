@@ -1,67 +1,59 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import ChatClient from "./tro-ly-phap-ly/chat-client";
 import styles from "./home.module.css";
 
 const services = [
   {
     number: "01",
-    short: "Môi giới",
     title: "Môi giới bất động sản",
-    copy: "Tiếp nhận nhu cầu, sàng lọc thông tin và đồng hành trong quá trình tìm kiếm, thương lượng, chuẩn bị giao dịch.",
-    note: "Giao dịch bắt đầu bằng thông tin rõ ràng.",
-    image: "/images/architecture.jpg",
-    credit: "Kevin Menajang / Pexels",
+    description: "Hỗ trợ tìm kiếm, giới thiệu, thương lượng và chuẩn bị thông tin cho giao dịch nhà đất.",
+    deliverables: ["Xác định nhu cầu", "Sàng lọc thông tin", "Hỗ trợ giao dịch"],
   },
   {
     number: "02",
-    short: "Đo đạc",
     title: "Đo đạc hiện trạng",
-    copy: "Khảo sát, đo vẽ và chuẩn bị dữ liệu hiện trạng phục vụ thiết kế, xây dựng cùng các bước xử lý hồ sơ.",
-    note: "Biết đúng hiện trạng trước khi đưa ra phương án.",
-    image: "/images/survey.jpg",
-    credit: "Nelson Axigoth / Pexels",
+    description: "Khảo sát và đo vẽ hiện trạng phục vụ hồ sơ, thiết kế hoặc chuẩn bị thi công.",
+    deliverables: ["Khảo sát thực địa", "Số liệu hiện trạng", "Bản vẽ đo đạc"],
   },
   {
     number: "03",
-    short: "Thiết kế",
     title: "Tư vấn thiết kế",
-    copy: "Phát triển phương án công năng và không gian bám sát khu đất, nhu cầu sử dụng cùng ngân sách dự kiến.",
-    note: "Biến dữ liệu thành một phương án có thể trao đổi.",
-    image: "/images/design.jpg",
-    credit: "Ron Lach / Pexels",
+    description: "Lập phương án công năng và không gian dựa trên khu đất, nhu cầu sử dụng và ngân sách.",
+    deliverables: ["Phương án công năng", "Hồ sơ thiết kế", "Dự kiến phạm vi"],
   },
   {
     number: "04",
-    short: "Xây dựng",
     title: "Xây dựng",
-    copy: "Tổ chức triển khai theo từng giai đoạn, phối hợp đầu việc kỹ thuật và làm rõ phạm vi trước khi thi công.",
-    note: "Đưa phương án từ bản vẽ ra công trình.",
-    image: "/images/architecture.jpg",
-    credit: "Kevin Menajang / Pexels",
+    description: "Tổ chức các đầu việc thi công theo phạm vi và phương án đã được thống nhất.",
+    deliverables: ["Phạm vi công việc", "Kế hoạch triển khai", "Theo dõi tiến độ"],
   },
 ];
 
 const steps = [
-  ["01", "Nhìn hiện trạng", "Làm rõ khu đất, hồ sơ đang có và mục tiêu thực tế."],
-  ["02", "Nối chuyên môn", "Xác định đầu việc nào cần môi giới, đo đạc, thiết kế hoặc xây dựng."],
-  ["03", "Chốt phương án", "Thống nhất phạm vi, thứ tự thực hiện và các điểm cần kiểm tra thêm."],
-  ["04", "Theo sát triển khai", "Duy trì một đầu mối để các phần việc không bị rời rạc."],
+  ["01", "Tiếp nhận nhu cầu", "Khách hàng cung cấp vị trí, hiện trạng và mục tiêu cần giải quyết."],
+  ["02", "Kiểm tra thông tin", "Minh Long xác định dữ liệu đã có, dữ liệu còn thiếu và đầu việc liên quan."],
+  ["03", "Đề xuất cách làm", "Hai bên thống nhất phạm vi, người phụ trách, thời gian và chi phí dự kiến."],
+  ["04", "Triển khai", "Công việc được thực hiện theo từng bước và cập nhật trong quá trình xử lý."],
 ];
 
 const faqs = [
   [
-    "Minh Long hoạt động ở khu vực nào?",
-    "Minh Long tập trung phục vụ tại TP. Hồ Chí Minh và trao đổi các nhu cầu ở khu vực lân cận tùy tính chất công việc.",
+    "Minh Long phục vụ ở khu vực nào?",
+    "Minh Long tập trung tại TP. Hồ Chí Minh và trao đổi thêm với khách hàng ở các khu vực lân cận.",
   ],
   [
-    "Tôi chưa biết mình cần dịch vụ nào thì sao?",
-    "Bạn chỉ cần mô tả hiện trạng và mục tiêu. Minh Long sẽ giúp phân loại đầu việc trước khi đề xuất bước phù hợp.",
+    "Chưa biết cần dịch vụ nào thì bắt đầu từ đâu?",
+    "Bạn chỉ cần gửi vị trí, hiện trạng và điều đang cần giải quyết. Minh Long sẽ giúp xác định đầu việc phù hợp.",
+  ],
+  [
+    "Ảnh trên website có phải công trình của Minh Long không?",
+    "Không. Những ảnh có ghi “Ảnh minh họa” được dùng để trình bày lĩnh vực hoạt động, không phải hồ sơ năng lực hoặc dự án đã thực hiện.",
   ],
   [
     "Legal Agent có thay thế luật sư không?",
-    "Không. Legal Agent hỗ trợ giải thích sơ bộ, nhận diện dữ kiện còn thiếu và truy xuất nguồn. Kết luận quan trọng vẫn cần người có chuyên môn kiểm tra.",
+    "Không. Công cụ này hỗ trợ trao đổi sơ bộ về pháp luật đất đai. Kết luận quan trọng vẫn cần người có chuyên môn kiểm tra.",
   ],
 ];
 
@@ -73,43 +65,36 @@ function Brand() {
   );
 }
 
+function ContactIcons() {
+  return (
+    <div className={styles.contactDock} aria-label="Liên hệ nhanh">
+      <a
+        className={styles.zaloButton}
+        href="https://zalo.me/0985532166"
+        target="_blank"
+        rel="noreferrer"
+        aria-label="Nhắn Zalo cho Minh Long"
+        data-label="Zalo 0985 532 166"
+      >
+        <span aria-hidden="true">Z</span>
+      </a>
+      <a
+        className={styles.messengerButton}
+        href="https://m.me/61592556041235"
+        target="_blank"
+        rel="noreferrer"
+        aria-label="Nhắn tin với Minh Long qua Messenger"
+        data-label="Messenger Minh Long"
+      >
+        <span aria-hidden="true" />
+      </a>
+    </div>
+  );
+}
+
 export default function HomeExperience() {
-  const [activeService, setActiveService] = useState(0);
-  const [headerCompact, setHeaderCompact] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [agentOpen, setAgentOpen] = useState(false);
-  const heroVisualRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    let frame = 0;
-    const updateScroll = () => {
-      cancelAnimationFrame(frame);
-      frame = requestAnimationFrame(() => {
-        const max = Math.max(document.documentElement.scrollHeight - window.innerHeight, 1);
-        document.documentElement.style.setProperty("--ml-progress", `${window.scrollY / max}`);
-        setHeaderCompact(window.scrollY > 24);
-      });
-    };
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) entry.target.classList.add(styles.visible);
-        });
-      },
-      { threshold: 0.14 },
-    );
-
-    document.querySelectorAll(`.${styles.reveal}`).forEach((element) => observer.observe(element));
-    window.addEventListener("scroll", updateScroll, { passive: true });
-    updateScroll();
-
-    return () => {
-      cancelAnimationFrame(frame);
-      observer.disconnect();
-      window.removeEventListener("scroll", updateScroll);
-    };
-  }, []);
 
   useEffect(() => {
     if (!agentOpen) return;
@@ -125,35 +110,19 @@ export default function HomeExperience() {
     };
   }, [agentOpen]);
 
-  const moveHero = (event: React.PointerEvent<HTMLDivElement>) => {
-    if (!heroVisualRef.current) return;
-    const rect = heroVisualRef.current.getBoundingClientRect();
-    const x = (event.clientX - rect.left) / rect.width - 0.5;
-    const y = (event.clientY - rect.top) / rect.height - 0.5;
-    heroVisualRef.current.style.setProperty("--move-x", `${x * 14}px`);
-    heroVisualRef.current.style.setProperty("--move-y", `${y * 10}px`);
-  };
-
-  const resetHero = () => {
-    heroVisualRef.current?.style.setProperty("--move-x", "0px");
-    heroVisualRef.current?.style.setProperty("--move-y", "0px");
-  };
+  const closeMenu = () => setMenuOpen(false);
 
   return (
     <div className={styles.site}>
-      <div className={styles.progress} aria-hidden="true" />
-      <header className={`${styles.header} ${headerCompact ? styles.headerCompact : ""}`}>
+      <header className={styles.header}>
         <a href="#top" aria-label="Minh Long — về đầu trang"><Brand /></a>
         <nav className={styles.nav} aria-label="Điều hướng chính">
           <a href="#dich-vu">Dịch vụ</a>
-          <a href="#nang-luc">Năng lực</a>
           <a href="#quy-trinh">Quy trình</a>
+          <a href="#legal-agent">Legal Agent</a>
           <a href="#ve-minh-long">Về Minh Long</a>
         </nav>
-        <div className={styles.headerActions}>
-          <button className={styles.agentLink} type="button" onClick={() => setAgentOpen(true)}>Legal Agent</button>
-          <a className={styles.primaryHeaderLink} href="#lien-he">Trao đổi nhu cầu</a>
-        </div>
+        <a className={styles.headerContact} href="#lien-he">Liên hệ</a>
         <button
           className={styles.menuButton}
           type="button"
@@ -161,219 +130,146 @@ export default function HomeExperience() {
           aria-controls="mobile-navigation"
           onClick={() => setMenuOpen((value) => !value)}
         >
-          <span /> <span />
-          <b>{menuOpen ? "Đóng" : "Menu"}</b>
+          <span /><span /><b>{menuOpen ? "Đóng" : "Menu"}</b>
         </button>
         <div id="mobile-navigation" className={`${styles.mobileNav} ${menuOpen ? styles.mobileNavOpen : ""}`}>
-          {[["Dịch vụ", "#dich-vu"], ["Năng lực", "#nang-luc"], ["Quy trình", "#quy-trinh"], ["Về Minh Long", "#ve-minh-long"], ["Liên hệ", "#lien-he"]].map(([label, href]) => (
-            <a key={href} href={href} onClick={() => setMenuOpen(false)}>{label}</a>
-          ))}
-          <button type="button" onClick={() => { setMenuOpen(false); setAgentOpen(true); }}>Legal Agent</button>
+          <a href="#dich-vu" onClick={closeMenu}>Dịch vụ</a>
+          <a href="#quy-trinh" onClick={closeMenu}>Quy trình</a>
+          <a href="#legal-agent" onClick={closeMenu}>Legal Agent</a>
+          <a href="#ve-minh-long" onClick={closeMenu}>Về Minh Long</a>
+          <a href="#lien-he" onClick={closeMenu}>Liên hệ</a>
         </div>
       </header>
 
       <main>
         <section className={styles.hero} id="top">
-          <div className={styles.heroBlueprint} aria-hidden="true">
-            <span className={styles.blueprintAxisX} />
-            <span className={styles.blueprintAxisY} />
-            <span className={styles.blueprintRoomA} />
-            <span className={styles.blueprintRoomB} />
-            <small>RANH THAM CHIẾU · 85 HƯNG NHƠN</small>
-          </div>
           <div className={styles.heroCopy}>
-            <p className={styles.kicker}>TP. HỒ CHÍ MINH · 85 HƯNG NHƠN</p>
-            <h1>
-              <span>Từ ranh đất</span>
-              <span>đến <em>mái nhà.</em></span>
-            </h1>
-            <p className={styles.heroLead}>Một đầu mối. Bốn chuyên môn xuyên suốt cho môi giới, đo đạc, thiết kế và xây dựng.</p>
+            <p className={styles.eyebrow}>TP. Hồ Chí Minh và khu vực lân cận</p>
+            <h1>Bất động sản, đo đạc, thiết kế và xây dựng.</h1>
+            <p className={styles.heroLead}>
+              Minh Long tiếp nhận nhu cầu, xác định đầu việc và phối hợp các phần liên quan trong một quy trình thống nhất.
+            </p>
             <div className={styles.heroActions}>
-              <a className={styles.primaryButton} href="#lien-he">Bắt đầu từ hiện trạng <span>↗</span></a>
-              <a className={styles.textButton} href="#quy-trinh">Xem cách Minh Long làm việc <span>↓</span></a>
+              <a className={styles.primaryButton} href="#dich-vu">Xem dịch vụ</a>
+              <a className={styles.secondaryButton} href="https://zalo.me/0985532166" target="_blank" rel="noreferrer">Nhắn Zalo</a>
             </div>
+            <dl className={styles.heroFacts}>
+              <div><dt>Văn phòng</dt><dd>85 Hưng Nhơn, TP.HCM</dd></div>
+              <div><dt>Giờ làm việc</dt><dd>07:00 – 17:00</dd></div>
+            </dl>
           </div>
-
-          <div
-            className={styles.heroVisual}
-            ref={heroVisualRef}
-            onPointerMove={moveHero}
-            onPointerLeave={resetHero}
-          >
-            <div className={styles.parcelBorder} aria-hidden="true" />
-            <div className={styles.parcelImage}>
-              <img src="/images/architecture.jpg" alt="Kiến trúc nhà ở nhiệt đới hiện đại — ảnh minh họa" />
-              <span>Ảnh minh họa · Kevin Menajang / Pexels</span>
-            </div>
-            <div className={styles.measurePointA} aria-hidden="true" />
-            <div className={styles.measurePointB} aria-hidden="true" />
-            <div className={styles.measureCaption} aria-hidden="true">
-              <b>ML–01</b><span>HIỆN TRẠNG → PHƯƠNG ÁN</span>
-            </div>
-          </div>
-
-          <div className={styles.journeyRail} id="dich-vu">
-            <div className={styles.journeyLine}><span style={{ width: `${(activeService / 3) * 100}%` }} /></div>
-            {services.map((service, index) => (
-              <button
-                key={service.number}
-                type="button"
-                className={activeService === index ? styles.journeyActive : ""}
-                onMouseEnter={() => setActiveService(index)}
-                onFocus={() => setActiveService(index)}
-                onClick={() => setActiveService(index)}
-                aria-pressed={activeService === index}
-              >
-                <span>{service.number}</span>
-                <b>{service.short}</b>
-              </button>
-            ))}
-          </div>
+          <figure className={styles.heroMedia}>
+            <img src="/images/architecture.jpg" alt="Nhà ở hiện đại — ảnh minh họa" />
+            <figcaption>Ảnh minh họa · Kevin Menajang / Pexels</figcaption>
+          </figure>
         </section>
 
-        <section className={`${styles.serviceStory} ${styles.reveal}`} id="nang-luc">
-          <div className={styles.sectionIndex}>
-            <span>01</span><b>NĂNG LỰC KẾT NỐI</b>
+        <section className={styles.serviceSection} id="dich-vu">
+          <div className={styles.sectionHeading}>
+            <p>Dịch vụ</p>
+            <h2>Minh Long hỗ trợ những gì?</h2>
+            <span>Mỗi dịch vụ được trình bày theo phạm vi công việc, không gộp thành cam kết chung chung.</span>
           </div>
-          <div className={styles.statement}>
-            <h2>Một khu đất.<br />Bốn góc nhìn.<br /><em>Một phương án thống nhất.</em></h2>
-            <p>Không bắt đầu bằng việc bán một gói dịch vụ. Minh Long bắt đầu bằng cách nhìn toàn bộ bài toán để biết việc gì cần làm trước.</p>
-          </div>
-
-          <div className={styles.serviceInteractive}>
-            <div className={styles.servicePhoto}>
-              {services.map((service, index) => (
-                <img
-                  key={service.number}
-                  className={activeService === index ? styles.servicePhotoActive : ""}
-                  src={service.image}
-                  alt={`${service.title} — ảnh minh họa`}
-                />
-              ))}
-              <span>{services[activeService].credit} · Ảnh minh họa</span>
-            </div>
-            <div className={styles.serviceDetails} aria-live="polite">
-              <span className={styles.serviceNumber}>{services[activeService].number}</span>
-              <p className={styles.serviceNote}>{services[activeService].note}</p>
-              <h3>{services[activeService].title}</h3>
-              <p>{services[activeService].copy}</p>
-              <div className={styles.serviceTabs}>
-                {services.map((service, index) => (
-                  <button
-                    type="button"
-                    key={service.number}
-                    className={activeService === index ? styles.serviceTabActive : ""}
-                    onClick={() => setActiveService(index)}
-                    aria-label={`Xem ${service.title}`}
-                  >{service.number}</button>
-                ))}
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <section className={`${styles.process} ${styles.reveal}`} id="quy-trinh">
-          <div className={styles.sectionIndexLight}>
-            <span>02</span><b>QUY TRÌNH</b>
-          </div>
-          <div className={styles.processIntro}>
-            <p>ĐƯỜNG ĐI CỦA MỘT YÊU CẦU</p>
-            <h2>Rõ từng bước.<br />Không rời từng phần.</h2>
-          </div>
-          <div className={styles.processSteps}>
-            {steps.map(([number, title, copy]) => (
-              <article key={number}>
-                <span>{number}</span>
-                <div />
-                <h3>{title}</h3>
-                <p>{copy}</p>
+          <div className={styles.serviceGrid}>
+            {services.map((service) => (
+              <article className={styles.serviceCard} key={service.number}>
+                <span className={styles.serviceNumber}>{service.number}</span>
+                <h3>{service.title}</h3>
+                <p>{service.description}</p>
+                <ul>
+                  {service.deliverables.map((item) => <li key={item}>{item}</li>)}
+                </ul>
               </article>
             ))}
           </div>
-          <div className={styles.processTrace} aria-hidden="true"><span /><i /><b /></div>
         </section>
 
-        <section className={`${styles.agentSection} ${styles.reveal}`}>
-          <div className={styles.sectionIndex}>
-            <span>03</span><b>CÔNG CỤ HỖ TRỢ</b>
+        <section className={styles.workSection} id="quy-trinh">
+          <div className={styles.sectionHeadingLight}>
+            <p>Quy trình làm việc</p>
+            <h2>Bốn bước từ tiếp nhận đến triển khai</h2>
           </div>
-          <div className={styles.agentMark} aria-hidden="true">ML<span>AI</span></div>
-          <div className={styles.agentCopy}>
-            <p>Minh Long Legal Agent</p>
-            <h2>Hỏi trước.<br />Hiểu rõ hơn.<br />Rồi mới quyết định.</h2>
-            <p>Trợ lý hỗ trợ giải thích sơ bộ vấn đề pháp luật đất đai, nhận diện dữ kiện còn thiếu và dẫn nguồn để bạn chuẩn bị cuộc trao đổi hiệu quả hơn.</p>
-            <button type="button" onClick={() => setAgentOpen(true)}>Bắt đầu cuộc trò chuyện <span>↗</span></button>
-            <small>Không thay thế luật sư hoặc cơ quan có thẩm quyền.</small>
+          <div className={styles.stepGrid}>
+            {steps.map(([number, title, description]) => (
+              <article key={number}>
+                <span>{number}</span>
+                <h3>{title}</h3>
+                <p>{description}</p>
+              </article>
+            ))}
           </div>
         </section>
 
-        <section className={`${styles.about} ${styles.reveal}`} id="ve-minh-long">
-          <div className={styles.aboutGrid} aria-hidden="true"><span /><span /><span /><span /></div>
-          <div className={styles.aboutCopy}>
-            <p>VỀ MINH LONG</p>
-            <h2>Gần hiện trạng.<br />Gần người làm.<br />Gần quyết định.</h2>
-          </div>
-          <div className={styles.aboutText}>
-            <p>Minh Long hoạt động tại TP. Hồ Chí Minh và khu vực lân cận, kết nối các đầu việc bất động sản cùng kỹ thuật công trình trong một quy trình phối hợp.</p>
+        <section className={styles.agentSection} id="legal-agent">
+          <div className={styles.agentLabel}>Công cụ hỗ trợ</div>
+          <div className={styles.agentContent}>
             <div>
-              <span>Văn phòng</span>
-              <strong>85 Hưng Nhơn<br />TP. Hồ Chí Minh</strong>
-              <a href="https://www.google.com/maps/search/?api=1&query=85%20H%C6%B0ng%20Nh%C6%A1n%2C%20H%E1%BB%93%20Ch%C3%AD%20Minh" target="_blank" rel="noreferrer">Mở bản đồ ↗</a>
+              <p>Minh Long Legal Agent</p>
+              <h2>Trao đổi sơ bộ về pháp luật đất đai</h2>
+            </div>
+            <div>
+              <p>
+                Mô tả tình huống bằng ngôn ngữ tự nhiên. Trợ lý giúp xác định thông tin còn thiếu và đưa ra nguồn để bạn kiểm tra tiếp.
+              </p>
+              <button type="button" onClick={() => setAgentOpen(true)}>Mở Legal Agent</button>
+              <small>Không thay thế luật sư hoặc cơ quan có thẩm quyền.</small>
             </div>
           </div>
         </section>
 
-        <section className={`${styles.faq} ${styles.reveal}`}>
-          <div>
-            <p>CÂU HỎI THƯỜNG GẶP</p>
-            <h2>Trao đổi rõ<br />từ đầu.</h2>
+        <section className={styles.aboutSection} id="ve-minh-long">
+          <div className={styles.aboutCopy}>
+            <p>Về Minh Long</p>
+            <h2>Một đầu mối cho các công việc liên quan đến nhà đất và công trình</h2>
+          </div>
+          <div className={styles.aboutDetails}>
+            <p>
+              Công ty Môi giới bất động sản, Tư vấn thiết kế, Xây dựng, Đo đạc Minh Long hoạt động tại TP. Hồ Chí Minh và khu vực lân cận.
+            </p>
+            <dl>
+              <div><dt>Địa chỉ</dt><dd>85 Hưng Nhơn, TP. Hồ Chí Minh</dd></div>
+              <div><dt>Phạm vi</dt><dd>TP.HCM và khu vực lân cận</dd></div>
+              <div><dt>Tiếp nhận</dt><dd>07:00 – 17:00</dd></div>
+            </dl>
+            <a href="https://www.google.com/maps/search/?api=1&query=85%20H%C6%B0ng%20Nh%C6%A1n%2C%20H%E1%BB%93%20Ch%C3%AD%20Minh" target="_blank" rel="noreferrer">Xem trên Google Maps</a>
+          </div>
+        </section>
+
+        <section className={styles.faqSection}>
+          <div className={styles.sectionHeading}>
+            <p>Câu hỏi thường gặp</p>
+            <h2>Thông tin cần biết trước khi liên hệ</h2>
           </div>
           <div className={styles.faqList}>
-            {faqs.map(([question, answer], index) => (
+            {faqs.map(([question, answer]) => (
               <details key={question}>
-                <summary><span>{String(index + 1).padStart(2, "0")}</span>{question}<b>+</b></summary>
+                <summary>{question}<span>+</span></summary>
                 <p>{answer}</p>
               </details>
             ))}
           </div>
         </section>
 
-        <section className={styles.contact} id="lien-he">
-          <div className={styles.contactLine} aria-hidden="true"><span /><i /><b /></div>
-          <p>BẮT ĐẦU TỪ HIỆN TRẠNG</p>
-          <h2>Bạn có một khu đất<br />hoặc một quyết định<br /><em>cần nhìn cho rõ?</em></h2>
-          <div className={styles.contactFooter}>
-            <p>Hãy mô tả ngắn nhu cầu của bạn. Minh Long sẽ cùng xác định bước đầu tiên phù hợp.</p>
-            <a href="tel:+84938202102">Gọi 0938 202 102 <span>↗</span></a>
-            <div className={styles.contactChannels}>
-              <a href="https://zalo.me/0985532166" target="_blank" rel="noreferrer"><span>Zalo</span><strong>0985 532 166</strong></a>
-              <a href="https://www.facebook.com/profile.php?id=61592556041235" target="_blank" rel="noreferrer"><span>Facebook</span><strong>Minh Long</strong></a>
-              <a href="https://m.me/61592556041235" target="_blank" rel="noreferrer"><span>Messenger</span><strong>Nhắn tin trực tiếp</strong></a>
-              <a href="mailto:contact.minhlongcorp@gmail.com"><span>Email</span><strong>contact.minhlongcorp@gmail.com</strong></a>
-              <a href="https://www.google.com/maps/search/?api=1&query=85%20H%C6%B0ng%20Nh%C6%A1n%2C%20H%E1%BB%93%20Ch%C3%AD%20Minh" target="_blank" rel="noreferrer"><span>Văn phòng</span><strong>85 Hưng Nhơn, TP.HCM</strong></a>
-              <div><span>Giờ làm việc</span><strong>07:00 – 17:00</strong></div>
-            </div>
+        <section className={styles.contactSection} id="lien-he">
+          <div>
+            <p>Liên hệ Minh Long</p>
+            <h2>Gửi nhu cầu và thông tin hiện trạng</h2>
+            <span>Minh Long sẽ trao đổi để xác định đầu việc phù hợp.</span>
+          </div>
+          <div className={styles.contactList}>
+            <a href="tel:+84938202102"><span>Điện thoại</span><strong>0938 202 102</strong></a>
+            <a href="https://zalo.me/0985532166" target="_blank" rel="noreferrer"><span>Zalo</span><strong>0985 532 166</strong></a>
+            <a href="https://m.me/61592556041235" target="_blank" rel="noreferrer"><span>Messenger</span><strong>Minh Long</strong></a>
+            <a href="mailto:contact.minhlongcorp@gmail.com"><span>Email</span><strong>contact.minhlongcorp@gmail.com</strong></a>
           </div>
         </section>
       </main>
 
-      <div className={styles.quickContact} aria-label="Liên hệ nhanh">
-        <a href="tel:+84938202102"><span>Gọi</span><b>0938 202 102</b></a>
-        <a href="https://zalo.me/0985532166" target="_blank" rel="noreferrer"><span>Zalo</span><b>0985 532 166</b></a>
-      </div>
+      <ContactIcons />
 
-      <a
-        className={styles.messengerDock}
-        href="https://m.me/61592556041235"
-        target="_blank"
-        rel="noreferrer"
-        aria-label="Nhắn tin với Minh Long qua Messenger"
-      >
-        <span className={styles.messengerIcon} aria-hidden="true" />
-        <span className={styles.messengerCopy}><strong>Messenger</strong><small>Nhắn tin với Minh Long</small></span>
-      </a>
-
-      <button className={styles.legalDock} type="button" onClick={() => setAgentOpen(true)}><span>ML</span><b>Hỏi pháp lý</b><i>↗</i></button>
+      <button className={styles.legalDock} type="button" onClick={() => setAgentOpen(true)} aria-label="Mở Minh Long Legal Agent">
+        <span>ML</span><b>Legal Agent</b>
+      </button>
 
       <div className={`${styles.agentOverlay} ${agentOpen ? styles.agentOverlayOpen : ""}`} aria-hidden={!agentOpen}>
         <button className={styles.agentBackdrop} type="button" aria-label="Đóng trợ lý pháp lý" onClick={() => setAgentOpen(false)} />
@@ -389,11 +285,11 @@ export default function HomeExperience() {
 
       <footer className={styles.footer}>
         <Brand />
-        <p>Cty môi giới bất động sản, tư vấn thiết kế, xây dựng, đo đạc Minh Long</p>
-        <div className={styles.footerContact}>
-          <a href="tel:+84938202102">0938 202 102</a>
-          <a href="mailto:contact.minhlongcorp@gmail.com">contact.minhlongcorp@gmail.com</a>
-          <small>© 2026 Minh Long · Ảnh minh họa: Pexels</small>
+        <p>Môi giới bất động sản · Tư vấn thiết kế · Xây dựng · Đo đạc</p>
+        <div>
+          <a href="https://www.facebook.com/profile.php?id=61592556041235" target="_blank" rel="noreferrer">Facebook</a>
+          <a href="mailto:contact.minhlongcorp@gmail.com">Email</a>
+          <small>© 2026 Minh Long · Ảnh minh họa sử dụng theo giấy phép Pexels</small>
         </div>
       </footer>
     </div>

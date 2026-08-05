@@ -12,9 +12,9 @@ export async function generateMetadata(): Promise<Metadata> {
 
   return {
     metadataBase,
-    title: "Minh Long | Bất động sản, thiết kế, xây dựng & đo đạc",
+    title: "Minh Long | Bất động sản, đo đạc, thiết kế và xây dựng",
     description:
-      "Minh Long kết nối dịch vụ bất động sản, tư vấn thiết kế, xây dựng, đo đạc và trợ lý pháp luật đất đai tại TP. Hồ Chí Minh.",
+      "Dịch vụ môi giới bất động sản, đo đạc hiện trạng, tư vấn thiết kế và xây dựng tại TP. Hồ Chí Minh.",
     keywords: [
       "Minh Long",
       "bất động sản TP.HCM",
@@ -26,24 +26,24 @@ export async function generateMetadata(): Promise<Metadata> {
     openGraph: {
       type: "website",
       locale: "vi_VN",
-      title: "Minh Long — Một đầu mối, nhiều chuyên môn",
+      title: "Minh Long — Bất động sản, đo đạc, thiết kế và xây dựng",
       description:
-        "Bất động sản, thiết kế, xây dựng, đo đạc và trợ lý pháp luật đất đai tại TP. Hồ Chí Minh.",
+        "Dịch vụ môi giới bất động sản, đo đạc hiện trạng, tư vấn thiết kế và xây dựng tại TP. Hồ Chí Minh.",
       siteName: "Minh Long",
       images: [
         {
           url: new URL("/og.png", metadataBase).toString(),
-          width: 1200,
-          height: 630,
-          alt: "Minh Long — Bất động sản và kỹ thuật công trình",
+          width: 1728,
+          height: 910,
+          alt: "Công ty Minh Long tại TP. Hồ Chí Minh",
         },
       ],
     },
     twitter: {
       card: "summary_large_image",
-      title: "Minh Long — Một đầu mối, nhiều chuyên môn",
+      title: "Minh Long — Bất động sản, đo đạc, thiết kế và xây dựng",
       description:
-        "Bất động sản, thiết kế, xây dựng, đo đạc và trợ lý pháp luật đất đai.",
+        "Dịch vụ bất động sản và công trình tại TP. Hồ Chí Minh.",
       images: [new URL("/og.png", metadataBase).toString()],
     },
   };
