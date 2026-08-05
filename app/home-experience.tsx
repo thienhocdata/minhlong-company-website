@@ -362,6 +362,17 @@ export default function HomeExperience() {
         <a href="https://zalo.me/0985532166" target="_blank" rel="noreferrer"><span>Zalo</span><b>0985 532 166</b></a>
       </div>
 
+      <a
+        className={styles.messengerDock}
+        href="https://m.me/61592556041235"
+        target="_blank"
+        rel="noreferrer"
+        aria-label="Nhắn tin với Minh Long qua Messenger"
+      >
+        <span className={styles.messengerIcon} aria-hidden="true" />
+        <span className={styles.messengerCopy}><strong>Messenger</strong><small>Nhắn tin với Minh Long</small></span>
+      </a>
+
       <button className={styles.legalDock} type="button" onClick={() => setAgentOpen(true)}><span>ML</span><b>Hỏi pháp lý</b><i>↗</i></button>
 
       <div className={`${styles.agentOverlay} ${agentOpen ? styles.agentOverlayOpen : ""}`} aria-hidden={!agentOpen}>

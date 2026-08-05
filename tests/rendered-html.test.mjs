@@ -63,6 +63,7 @@ test("renders the key navigation and disclosure content", async () => {
   assert.match(html, /07:00 – 17:00/);
   assert.match(html, /https:\/\/www\.facebook\.com\/profile\.php\?id=61592556041235/);
   assert.match(html, /https:\/\/m\.me\/61592556041235/);
+  assert.match(html, /aria-label="Nhắn tin với Minh Long qua Messenger"/);
 });
 
 test("server-renders the dedicated Legal Agent conversation page", async () => {

@@ -879,6 +879,58 @@
 .quickContact span { color: #e9af8a; font-size: 7px; font-weight: 850; letter-spacing: .1em; text-transform: uppercase; }
 .quickContact b { font-size: 9px; font-weight: 700; letter-spacing: .025em; }
 
+.messengerDock {
+  position: fixed;
+  z-index: 69;
+  left: 24px;
+  bottom: 86px;
+  min-height: 54px;
+  padding: 5px 17px 5px 5px;
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  color: white;
+  border: 1px solid rgba(255,255,255,.5);
+  border-radius: 999px;
+  background: linear-gradient(135deg, #0a7cff, #0866ff);
+  box-shadow: 0 15px 38px rgba(8,102,255,.3);
+  transition: transform 180ms ease, box-shadow 180ms ease;
+}
+.messengerDock:hover,
+.messengerDock:focus-visible { transform: translateY(-3px); box-shadow: 0 19px 46px rgba(8,102,255,.38); }
+.messengerIcon {
+  position: relative;
+  width: 42px;
+  height: 42px;
+  flex: 0 0 42px;
+  border-radius: 50%;
+  background: white;
+}
+.messengerIcon::before {
+  content: "";
+  position: absolute;
+  left: 10px;
+  top: 12px;
+  width: 23px;
+  height: 18px;
+  background: linear-gradient(135deg, #0a7cff, #7646ff);
+  clip-path: polygon(0 72%, 37% 35%, 56% 51%, 100% 8%, 64% 77%, 44% 61%);
+}
+.messengerIcon::after {
+  content: "";
+  position: absolute;
+  right: -1px;
+  bottom: 1px;
+  width: 9px;
+  height: 9px;
+  border: 2px solid #0866ff;
+  border-radius: 50%;
+  background: #39c67b;
+}
+.messengerCopy { display: flex; flex-direction: column; gap: 2px; }
+.messengerCopy strong { font-size: 10px; font-weight: 800; letter-spacing: .025em; }
+.messengerCopy small { color: rgba(255,255,255,.76); font-size: 8px; font-weight: 600; white-space: nowrap; }
+
 .agentOverlay {
   position: fixed;
   inset: 0;
@@ -1083,6 +1135,9 @@
   .contact h2 { font-size: 59px; }
   .quickContact { left: 0; right: 0; bottom: 0; border-radius: 0; display: grid; grid-template-columns: 1fr 1fr; }
   .quickContact a { justify-content: center; }
+  .messengerDock { left: 13px; bottom: 65px; width: 52px; min-height: 52px; padding: 5px; }
+  .messengerIcon { width: 40px; height: 40px; flex-basis: 40px; }
+  .messengerCopy { display: none; }
   .legalDock { right: 13px; bottom: 65px; }
   .agentDrawer { width: 100%; }
   .agentDrawerHeader { grid-template-columns: 1fr auto; }
