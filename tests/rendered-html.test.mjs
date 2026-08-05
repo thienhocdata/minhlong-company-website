@@ -35,17 +35,16 @@ test("server-renders the complete Minh Long landing page", async () => {
   const html = await response.text();
   assert.match(
     html,
-    /<title>Minh Long \| Nhà đất cần rõ trước khi làm<\/title>/i,
+    /<title>Minh Long \| Giải pháp nhà đất và công trình<\/title>/i,
   );
-  assert.match(html, /Nhà đất/);
-  assert.match(html, /cần rõ/);
-  assert.match(html, /trước khi làm\./);
+  assert.match(html, /Giải pháp nhà đất/);
+  assert.match(html, /và công trình/);
   assert.match(html, /Môi giới bất động sản/);
   assert.match(html, /Tư vấn thiết kế/);
   assert.match(html, /Đo đạc hiện trạng/);
   assert.match(html, /aria-label="Mở Minh Long Legal Agent"/);
   assert.match(html, /85 Hưng Nhơn/);
-  assert.match(html, /https:\/\/minhlong\.example\/og-redesign\.png/);
+  assert.match(html, /https:\/\/minhlong\.example\/og-navy\.png/);
   assert.doesNotMatch(html, /react-loading-skeleton|Your site is taking shape/i);
 });
 
@@ -71,6 +70,7 @@ test("renders the key navigation and disclosure content", async () => {
   assert.match(html, /data-label="0985 532 166"/);
   assert.match(html, />Zalo<\/span>/);
   assert.match(html, /Ảnh minh họa · Kevin Menajang \/ Pexels/);
+  assert.match(html, /không phải hồ sơ dự án đã thực hiện/);
 });
 
 test("server-renders the dedicated Legal Agent conversation page", async () => {
