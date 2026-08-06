@@ -51,11 +51,11 @@ function ContactIcons() {
     <div className={styles.contactDock} aria-label="Liên hệ nhanh">
       <a
         className={styles.zaloButton}
-        href="https://zalo.me/0985532166"
+        href="https://zalo.me/0938202102"
         target="_blank"
         rel="noreferrer"
         aria-label="Nhắn Zalo cho Minh Long"
-        data-label="0985 532 166"
+        data-label="0938 202 102"
       >
         <span>Zalo</span>
       </a>
@@ -219,7 +219,7 @@ export default function HomeExperience() {
           </div>
           <div className={styles.contactList}>
             <a href="tel:+84938202102"><span>Điện thoại</span><strong>0938 202 102</strong><i>↗</i></a>
-            <a href="https://zalo.me/0985532166" target="_blank" rel="noreferrer"><span>Zalo</span><strong>0985 532 166</strong><i>↗</i></a>
+            <a href="https://zalo.me/0938202102" target="_blank" rel="noreferrer"><span>Zalo</span><strong>0938 202 102</strong><i>↗</i></a>
             <a href="https://m.me/61592556041235" target="_blank" rel="noreferrer"><span>Messenger</span><strong>Minh Long</strong><i>↗</i></a>
             <a href="mailto:contact.minhlongcorp@gmail.com"><span>Email</span><strong>contact.minhlongcorp@gmail.com</strong><i>↗</i></a>
           </div>

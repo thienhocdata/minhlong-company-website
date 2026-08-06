@@ -61,14 +61,14 @@ test("renders the key navigation and disclosure content", async () => {
   assert.doesNotMatch(html, /Câu hỏi thường gặp|Thông tin cần biết trước khi liên hệ/);
   assert.doesNotMatch(html, /Trao đổi sơ bộ về pháp luật đất đai/);
   assert.match(html, /0938 202 102/);
-  assert.match(html, /0985 532 166/);
+  assert.match(html, /0938 202 102/);
   assert.match(html, /contact\.minhlongcorp@gmail\.com/);
   assert.match(html, /07:00–11:00/);
   assert.match(html, /13:30–17:00/);
   assert.match(html, /https:\/\/www\.facebook\.com\/profile\.php\?id=61592556041235/);
   assert.match(html, /https:\/\/m\.me\/61592556041235/);
   assert.match(html, /aria-label="Nhắn tin với Minh Long qua Messenger"/);
-  assert.match(html, /data-label="0985 532 166"/);
+  assert.match(html, /data-label="0938 202 102"/);
   assert.match(html, />Zalo<\/span>/);
   assert.match(html, /Ảnh minh họa · Kevin Menajang \/ Pexels/);
 });
