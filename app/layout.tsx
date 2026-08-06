@@ -12,7 +12,7 @@ export async function generateMetadata(): Promise<Metadata> {
 
   return {
     metadataBase,
-    title: "Minh Long | Giải pháp nhà đất và công trình",
+    title: "Minh Long | Nhà đất cần rõ trước khi làm",
     description:
       "Dịch vụ môi giới bất động sản, đo đạc hiện trạng, tư vấn thiết kế và xây dựng tại TP. Hồ Chí Minh.",
     keywords: [
@@ -26,25 +26,25 @@ export async function generateMetadata(): Promise<Metadata> {
     openGraph: {
       type: "website",
       locale: "vi_VN",
-      title: "Minh Long — Giải pháp nhà đất và công trình",
+      title: "Minh Long — Nhà đất cần rõ trước khi làm",
       description:
         "Dịch vụ môi giới bất động sản, đo đạc hiện trạng, tư vấn thiết kế và xây dựng tại TP. Hồ Chí Minh.",
       siteName: "Minh Long",
       images: [
         {
-          url: new URL("/og-navy.png", metadataBase).toString(),
-          width: 1729,
-          height: 910,
+          url: new URL("/og-redesign.png", metadataBase).toString(),
+          width: 1730,
+          height: 909,
           alt: "Công ty Minh Long tại TP. Hồ Chí Minh",
         },
       ],
     },
     twitter: {
       card: "summary_large_image",
-      title: "Minh Long — Giải pháp nhà đất và công trình",
+      title: "Minh Long — Nhà đất cần rõ trước khi làm",
       description:
         "Dịch vụ bất động sản và công trình tại TP. Hồ Chí Minh.",
-      images: [new URL("/og-navy.png", metadataBase).toString()],
+      images: [new URL("/og-redesign.png", metadataBase).toString()],
     },
   };
 }
